@@ -1,8 +1,31 @@
-import React from "react";
-import { Box, Button, Grid, TextField, Typography, Container } from "../../components";
+import React, { useState, useEffect } from "react";
+import { Box, Button, Grid, TextField, Typography, Container, Alert } from "../../components";
+
+import { checkConsistencyRegistrationData, saveUserData } from "../../services/auth";
 import "../styles/auth.scss";
 
-export default function SignUp(){
+export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const [storedEmail, setStoredEmail] = useState("");
+  const [storedPassword, setStoredPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  function provideVerificationData(e) {
+    e.preventDefault();
+
+    const isValid = checkConsistencyRegistrationData(email, password, repeatPassword, setError, setSuccess);
+
+    if (isValid) {
+      saveUserData(email, password);
+    }
+  }
+
   return (
     <Box className="auth-container">
       <Container className="auth-box">
@@ -21,6 +44,8 @@ export default function SignUp(){
             variant="outlined"
             margin="normal"
             required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             fullWidth
@@ -29,6 +54,8 @@ export default function SignUp(){
             variant="outlined"
             margin="normal"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             fullWidth
@@ -37,6 +64,8 @@ export default function SignUp(){
             variant="outlined"
             margin="normal"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             fullWidth
@@ -45,9 +74,23 @@ export default function SignUp(){
             variant="outlined"
             margin="normal"
             required
+            value={repeatPassword}
+            onChange={(e) => setRepeatPassword(e.target.value)}
           />
 
-          <Button className="auth-button" fullWidth variant="contained">
+          {error && (
+            <Alert severity="error" variant="outlined">
+              {error}
+            </Alert>
+          )}
+
+          {success && (
+            <Alert severity="sucess" variant="outlined">
+              Cadastro realizado com sucesso!
+            </Alert>
+          )}
+
+          <Button className="auth-button" fullWidth variant="contained" onClick={provideVerificationData}>
             Cadastrar
           </Button>
 

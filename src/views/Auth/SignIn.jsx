@@ -1,8 +1,34 @@
-import React from "react";
-import { Box, Button, Grid, TextField, Typography, Container } from "../../components";
+import React, { useState } from "react";
+import { Box, Button, Grid, TextField, Typography, Container, Alert } from "../../components";
+import { useNavigate } from "react-router-dom";
+
+import { getStoredDataLocalStorage } from '../../services/auth'
 import "../styles/auth.scss";
 
-export default function SignIn(){
+export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
+
+  function verificationEmailAndPasswordMatch(e) {
+    e.preventDefault();
+
+    const { storedEmail, storedPassword } = getStoredDataLocalStorage();
+
+    if (email === storedEmail && password === storedPassword) {
+      setError("");
+      setSuccess(true);
+      navigate("/")
+    } else {
+      setSuccess(false);
+      setError("E-mail ou senha incorretos.");
+    }
+  }
+
   return (
     <Box className="auth-container">
       <Container className="auth-box">
@@ -21,6 +47,8 @@ export default function SignIn(){
             variant="outlined"
             margin="normal"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             fullWidth
@@ -29,9 +57,23 @@ export default function SignIn(){
             variant="outlined"
             margin="normal"
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button className="auth-button" fullWidth variant="contained">
+          {error && (
+            <Typography color="error" variant="body2" align="center" margin="normal">
+              {error}
+            </Typography>
+          )}
+
+          {success && (
+            <Alert severity="success" style={{ margin: '10px 0' }}>
+              Login bem-sucedido!
+            </Alert>
+          )}
+
+          <Button className="auth-button" fullWidth variant="contained" onClick={verificationEmailAndPasswordMatch}>
             Entrar
           </Button>
 
