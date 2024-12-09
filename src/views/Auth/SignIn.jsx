@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Box, Button, Grid, TextField, Typography, Container, Alert } from "../../components";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAppContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
 import "../styles/auth.scss";
 
 export default function SignIn() {
-  const { login, authState, clearSuccessMessage } = useAuth();
+  const { login, authState, clearSuccessMessage } = useAppContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

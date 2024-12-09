@@ -1,8 +1,16 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
+import i18n from "./i18n";
 
-const AuthContext = createContext();
+export const AppContext = createContext();
 
-export function AuthProvider({ children }) {
+export function AppProvider({ children }) {
+  const [language, setLanguage] = useState(i18n.language);
+
+  const changeLanguage = (lang) => {
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+  };
+
   const [authState, setAuthState] = useState({
     email: "",
     password: "",
@@ -41,13 +49,22 @@ export function AuthProvider({ children }) {
     setAuthState((prev) => ({ ...prev, successMessage: "" }));
   }
 
-  return (
-    <AuthContext.Provider value={{ authState, login, register, clearSuccessMessage }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const globalState = {
+    language,
+    changeLanguage,
+    authState,
+    login,
+    register,
+    clearSuccessMessage,
+  };
+
+  return <AppContext.Provider value={globalState}>{children}</AppContext.Provider>;
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (context === null) {
+    throw new Error("useAppContext must be used within an AppProvider");
+  }
+  return context;
+};

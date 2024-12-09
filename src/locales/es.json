@@ -1,0 +1,15 @@
+{
+  "title": "Agrega información",
+  "addItem": "Agregar ítem",
+  "add": "Agregar",
+  "sleep": "Dormir",
+  "eat": "Amamantamiento",
+  "diaper": "Pañal",
+  "weight": "Peso",
+  "height": "Altura",
+
+  "settings": "Ajustes",
+  "change_language": "Elige idioma",
+  "save_language": "Guardar idioma",
+  "selected_language": "Idioma seleccionado"
+}

@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
+import { useTranslation } from "react-i18next";
+
 import { Box, Container, Typography, Grid, TextField, Button, IconButton, Avatar } from "../../components";
 import { Settings, BarChart, AddCircle } from "@mui/icons-material";
+
 import "../styles/homeScreen.scss";
 
 export default function Home() {
+  const { t } = useTranslation();
+  const navigate = useNavigate(); 
+
   const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState("");
 
@@ -30,41 +37,41 @@ export default function Home() {
         />
 
         <Box className="header-info right">
-          <IconButton>
+          <IconButton onClick={() => navigate("/settings")}>
             <Settings />
           </IconButton>
-          <Typography variant="body2">Peso: 3,5 kg</Typography>
+          <Typography variant="body2">{t("weight")}: 3,5 kg</Typography>
         </Box>
 
         <Box className="header-info left">
           <IconButton>
             <BarChart />
           </IconButton>
-          <Typography variant="body2">Altura: 50 cm</Typography>
+          <Typography variant="body2">{t("height")}: 50 cm</Typography>
         </Box>
       </Container>
 
       <Container className="home-cards">
         <Typography variant="h5" className="cards-title">
-          Adicione informações
+        {t("title")}
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Box className="card">
               <AddCircle className="card-icon" />
-              <Typography variant="body1">Sono</Typography>
+              <Typography variant="body1">{t("sleep")}</Typography>
             </Box>
           </Grid>
           <Grid item xs={4}>
             <Box className="card">
               <AddCircle className="card-icon" />
-              <Typography variant="body1">Amamentação</Typography>
+              <Typography variant="body1">{t("eat")}</Typography>
             </Box>
           </Grid>
           <Grid item xs={4}>
             <Box className="card">
               <AddCircle className="card-icon" />
-              <Typography variant="body1">Fralda</Typography>
+              <Typography variant="body1">{t("diaper")}</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -74,7 +81,7 @@ export default function Home() {
         <Box className="todo-form">
           <TextField
             fullWidth
-            label="Adicionar item"
+            label={t("addItem")}
             variant="outlined"
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
@@ -84,7 +91,7 @@ export default function Home() {
             className="todo-button"
             onClick={handleAddItem}
           >
-            Adicionar
+            {t("add")}
           </Button>
         </Box>
 
