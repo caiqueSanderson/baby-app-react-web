@@ -7,13 +7,12 @@ import {
   Container,
   Typography,
   Button,
-  TextField,
   IconButton,
+  AppBar,
   Eat,
   Diaper,
   Sleep,
 } from "../../components";
-import { ArrowBack } from "@mui/icons-material";
 
 import "../styles/form.scss";
 
@@ -33,7 +32,7 @@ export default function Form() {
     }
   }, [id]);
 
-  const handleSave = () => {
+  function handleSave(){
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
     if (id) {
       const updatedItems = storedItems.map((i) =>
@@ -47,6 +46,13 @@ export default function Form() {
     }
     navigate("/");
   };
+
+  function handleDelete() {
+    const storedItems = JSON.parse(localStorage.getItem("items")) || [];
+    const updatedItems = storedItems.filter((i) => i.id !== id);
+    localStorage.setItem("items", JSON.stringify(updatedItems));
+    navigate("/");
+  }
 
   const renderFormType = () => {
     switch (itemType) {
@@ -63,14 +69,7 @@ export default function Form() {
 
   return (
     <Box className="form-container">
-      <Box className="top-bar">
-        <IconButton className="back-button" onClick={() => navigate("/")}>
-          <ArrowBack sx={{ color: "#fff" }} />
-        </IconButton>
-        <Typography variant="h6" className="item-type">
-          {t(itemType)}
-        </Typography>
-      </Box>
+      <AppBar isEditMode={!!id} title={t(itemType)} onDelete={handleDelete} />
 
       <Container>
         <Typography variant="h4">
@@ -79,7 +78,11 @@ export default function Form() {
 
         {renderFormType()}
 
-        <Button className="form-button" variant="contained" onClick={handleSave}>
+        <Button
+          className="form-button"
+          variant="contained"
+          onClick={handleSave}
+        >
           {id ? t("uptade") : t("save")}
         </Button>
       </Container>
