@@ -19,12 +19,13 @@ import "../styles/form.scss";
 export default function Form() {
   const { itemType, id } = useParams();
   const [item, setItem] = useState({ name: "", data: {} });
+  
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
-      const storedItems = JSON.parse(localStorage.getItem("items")) || [];
+      const storedItems = JSON.parse(localStorage.getItem("@items")) || [];
       const existingItem = storedItems.find((i) => i.id === id);
       if (existingItem) {
         setItem(existingItem);
@@ -32,25 +33,25 @@ export default function Form() {
     }
   }, [id]);
 
-  function handleSave(){
-    const storedItems = JSON.parse(localStorage.getItem("items")) || [];
+  function handleSave() {
+    const storedItems = JSON.parse(localStorage.getItem("@items")) || [];
     if (id) {
       const updatedItems = storedItems.map((i) =>
         i.id === id ? { ...i, ...item } : i
       );
-      localStorage.setItem("items", JSON.stringify(updatedItems));
+      localStorage.setItem("@items", JSON.stringify(updatedItems));
     } else {
-      const newItem = { ...item, id: Date.now().toString() };
+      const newItem = { ...item, id: Date.now().toString(), type: itemType };
       storedItems.push(newItem);
-      localStorage.setItem("items", JSON.stringify(storedItems));
+      localStorage.setItem("@items", JSON.stringify(storedItems));
     }
     navigate("/");
-  };
+  }
 
   function handleDelete() {
     const storedItems = JSON.parse(localStorage.getItem("items")) || [];
     const updatedItems = storedItems.filter((i) => i.id !== id);
-    localStorage.setItem("items", JSON.stringify(updatedItems));
+    localStorage.setItem("@items", JSON.stringify(updatedItems));
     navigate("/");
   }
 

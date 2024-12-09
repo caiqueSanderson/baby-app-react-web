@@ -1,71 +1,95 @@
-// import List from '@mui/material/List';
-// import ListItem from '@mui/material/ListItem';
-// import ListItemText from '@mui/material/ListItemText';
-// import ListItemAvatar from '@mui/material/ListItemAvatar';
-// import Avatar from '@mui/material/Avatar';
-// import { useNavigate } from 'react-router-dom';
+import React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import { useNavigate } from "react-router-dom";
 
-// import CribIcon from '@mui/icons-material/Crib';
-// import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
-// import SpaIcon from '@mui/icons-material/Spa';
-// import { generateSubtitle } from '../../../utils/action';
-// import { useAppContext } from '../../../Context';
+import CribIcon from "@mui/icons-material/Crib";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import SpaIcon from "@mui/icons-material/Spa";
 
-// const CustomList = ({items, ...props}) => {
-//     const navigate = useNavigate();
-//     const { translate } = useAppContext();
+import { useTranslation } from "react-i18next";
 
-//     const getIcon = (typeAction) => {
-//         switch (typeAction) {
-//         case 1:
-//             return <CribIcon/>;
-//         case 2:
-//             return <RestaurantMenuIcon/>;
-//         case 3:
-//             return <SpaIcon/>;
-//         default:
-//             return <RestaurantMenuIcon/>;
-//         }
-//     }
+const CustomList = ({ items }) => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-//     const actionTypeListToInt = {
-//         1 : "sleep",
-//         2: "eat",
-//         3: "diaper",
-//     }
+  function getIcon(actionType) {
+    switch (actionType) {
+      case "sleep":
+        return <CribIcon />;
+      case "eat":
+        return <RestaurantMenuIcon />;
+      case "diaper":
+        return <SpaIcon />;
+      default:
+        return <RestaurantMenuIcon />;
+    }
+  }
 
-//     const typeColor = {
-//         1: "#4b10a9",
-//         2: "#47c869",
-//         3: "#f4cc1d",
-//     }
+  const typeColor = {
+    sleep: "#4b10a9",
+    eat: "#47c869",
+    diaper: "#f4cc1d",
+  };
 
-//     return (
-//         <List {...props}>
-//         {
-//             items.map((item, index) => {
-//                 const typeStr = actionTypeListToInt[item.action_type];
-//                 return <ListItem  sx={{
-//                                     backgroundColor: "#fff",
-//                                     borderRadius: "60px",
-//                                     marginTop: '1em'
-//                                 }}
-//                                 id={`new-item-list-${index}`}
-//                                 onClick={() => navigate(`/${item.action_type}/${item.id}`)}
-//                         >
-//                             <ListItemAvatar>
-//                                 <Avatar
-//                                 sx={{ bgcolor: typeColor[item.action_type] }}
-//                                 >
-//                                     {getIcon(item.action_type)}
-//                                 </Avatar>
-//                             </ListItemAvatar>
-//                             <ListItemText primary={translate(typeStr)} secondary={generateSubtitle(item, translate)} />
-//                         </ListItem>
-//             })
-//         }
-//         </List>
-//     );
-// }
+  function subtitleSleep() {
+    return "O bebê está dormindo";
+  }
+  function subtitleEat() {
+    return "O bebê está comendo";
+  }
+  function subtitleDiaper() {
+    return "O bebê está trocando a fralda";
+  }
 
-// export default CustomList;
+  function generateSubtitle(actionType) {
+    switch (actionType) {
+      case "sleep":
+        return subtitleSleep();
+      case "eat":
+        return subtitleEat();
+      case "diaper":
+        return subtitleDiaper();
+      default:
+        return subtitleEat();
+    }
+  }
+
+  return (
+    <List
+      sx={{
+        width: "100%",
+        padding: 0,
+      }}
+    >
+      {items.map((item, index) => (
+        <ListItem
+          key={item.id}
+          sx={{
+            backgroundColor: "#fff",
+            borderRadius: "60px",
+            marginTop: "1em",
+            width: "100%",
+          }}
+          id={`new-item-list-${index}`}
+          onClick={() => navigate(`/${item.type}/${item.id}`)}
+        >
+          <ListItemAvatar>
+            <Avatar sx={{ bgcolor: typeColor[item.type] }}>
+              {getIcon(item.type)}
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary={t(item.type)}
+            secondary={generateSubtitle(item.type)}
+          />
+        </ListItem>
+      ))}
+    </List>
+  );
+};
+
+export default CustomList;
