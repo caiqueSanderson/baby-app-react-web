@@ -1,30 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Button, Grid, TextField, Typography, Container, Alert } from "../../components";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
-import { getStoredDataLocalStorage } from '../../services/auth'
 import "../styles/auth.scss";
 
 export default function SignIn() {
+  const { login, authState, clearSuccessMessage } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
-  function verificationEmailAndPasswordMatch(e) {
+  useEffect(() => {
+    if (authState.successMessage) {
+      const timeout = setTimeout(() => {
+        clearSuccessMessage();
+        navigate("/");
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [authState.successMessage, clearSuccessMessage, navigate]);
+
+  function handleLogin(e) {
     e.preventDefault();
 
-    const { storedEmail, storedPassword } = getStoredDataLocalStorage();
+    const isSuccess = login(email, password);
 
-    if (email === storedEmail && password === storedPassword) {
-      setError("");
-      setSuccess(true);
-      navigate("/")
-    } else {
-      setSuccess(false);
+    if (!isSuccess) {
       setError("E-mail ou senha incorretos.");
     }
   }
@@ -62,18 +65,18 @@ export default function SignIn() {
           />
 
           {error && (
-            <Typography color="error" variant="body2" align="center" margin="normal">
+            <Alert severity="error" variant="outlined">
               {error}
-            </Typography>
-          )}
-
-          {success && (
-            <Alert severity="success" style={{ margin: '10px 0' }}>
-              Login bem-sucedido!
             </Alert>
           )}
 
-          <Button className="auth-button" fullWidth variant="contained" onClick={verificationEmailAndPasswordMatch}>
+          {authState.successMessage && (
+            <Alert severity="success" variant="outlined">
+              {authState.successMessage}
+            </Alert>
+          )}
+
+          <Button className="auth-button" fullWidth variant="contained" onClick={handleLogin}>
             Entrar
           </Button>
 
@@ -88,5 +91,4 @@ export default function SignIn() {
       </Container>
     </Box>
   );
-};
-
+}

@@ -1,29 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, Grid, TextField, Typography, Container, Alert } from "../../components";
-
-import { checkConsistencyRegistrationData, saveUserData } from "../../services/auth";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "../styles/auth.scss";
 
 export default function SignUp() {
+  const { register, authState, clearSuccessMessage } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
-  const [storedEmail, setStoredEmail] = useState("");
-  const [storedPassword, setStoredPassword] = useState("");
-
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
 
-  function provideVerificationData(e) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authState.successMessage) {
+      const timeout = setTimeout(() => {
+        clearSuccessMessage();
+        navigate("/signin");
+      }, 2000);
+      return () => clearTimeout(timeout);
+    }
+  }, [authState.successMessage, clearSuccessMessage, navigate]);
+
+  function handleRegister(e) {
     e.preventDefault();
 
-    const isValid = checkConsistencyRegistrationData(email, password, repeatPassword, setError, setSuccess);
-
-    if (isValid) {
-      saveUserData(email, password);
+    if (password !== repeatPassword) {
+      setError("As senhas diferem!");
+      return;
     }
+
+    register(email, password);
+    setError("");
   }
 
   return (
@@ -84,13 +94,13 @@ export default function SignUp() {
             </Alert>
           )}
 
-          {success && (
-            <Alert severity="sucess" variant="outlined">
-              Cadastro realizado com sucesso!
+          {authState.successMessage && (
+            <Alert severity="success" variant="outlined">
+              {authState.successMessage}
             </Alert>
           )}
 
-          <Button className="auth-button" fullWidth variant="contained" onClick={provideVerificationData}>
+          <Button className="auth-button" fullWidth variant="contained" onClick={handleRegister}>
             Cadastrar
           </Button>
 
@@ -101,9 +111,8 @@ export default function SignUp() {
               </Button>
             </Grid>
           </Grid>
-
         </Box>
       </Container>
     </Box>
   );
-};
+}
