@@ -21,6 +21,10 @@ export default function Home() {
     }
   }
 
+  function navigateSpecificForm(itemType){
+    navigate(`/form/${itemType}`);
+  };
+
   return (
     <Box className="home-container">
       <Container className="home-header">
@@ -56,24 +60,28 @@ export default function Home() {
         {t("title")}
         </Typography>
         <Grid container spacing={2}>
+
           <Grid item xs={4}>
-            <Box className="card">
+            <Box className="card" onClick={() => navigateSpecificForm("sleep")}>
               <AddCircle className="card-icon" />
               <Typography variant="body1">{t("sleep")}</Typography>
             </Box>
           </Grid>
+
           <Grid item xs={4}>
-            <Box className="card">
+            <Box className="card" onClick={() => navigateSpecificForm("eat")}>
               <AddCircle className="card-icon" />
               <Typography variant="body1">{t("eat")}</Typography>
             </Box>
           </Grid>
+
           <Grid item xs={4}>
-            <Box className="card">
+            <Box className="card" onClick={() => navigateSpecificForm("diaper")}>
               <AddCircle className="card-icon" />
               <Typography variant="body1">{t("diaper")}</Typography>
             </Box>
           </Grid>
+
         </Grid>
       </Container>
 

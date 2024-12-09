@@ -1,15 +1,33 @@
 {
   "title": "Agrega información",
   "addItem": "Agregar ítem",
+  "editItem": "Editar elemento",
   "add": "Agregar",
+  "observations": "Observaciones",
+
   "sleep": "Dormir",
   "eat": "Amamantamiento",
   "diaper": "Pañal",
+
   "weight": "Peso",
   "height": "Altura",
 
   "settings": "Ajustes",
   "change_language": "Elige idioma",
   "save_language": "Guardar idioma",
-  "selected_language": "Idioma seleccionado"
+  "selected_language": "Idioma seleccionado",
+
+  "dateHourStart": "Fecha y hora de inicio",
+  "dateHourEnd": "Fecha y hora de finalización",
+
+  "breast": "Mama",
+  "bottle": "Botella",
+  "amountMl": "Mililitros",
+  
+  "exchangeType": "Tipo de cambio",
+  "urine": "Orina",
+  "feces": "Heces",
+
+  "uptade": "Actualizar",
+  "save": "Ahorrar"
 }

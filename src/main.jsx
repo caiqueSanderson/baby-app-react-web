@@ -7,7 +7,8 @@ import { AppProvider } from "./Context";
 import Home from './views/Home';
 import SignIn from './views/Auth/SignIn';
 import SignUp from './views/Auth/SignUp';
-import Dashboard from './views/Dashboard'
+import Form from './views/Form';
+import Dashboard from './views/Dashboard';
 import Settings from './views/Settings';
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/form/:itemType/:id?",
+    element: <Form />,
   },
   {
     path: "/dashboard",

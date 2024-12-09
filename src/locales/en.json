@@ -1,15 +1,33 @@
 {
   "title": "Add information",
   "addItem": "Add item",
+  "editItem": "Edit item",
   "add": "Add",
+  "observations": "Observations",
+
   "sleep": "Sleep",
   "eat": "Breastfeeding",
   "diaper": "Diaper",
+
   "weight": "Weight",
   "height": "Height",
 
   "settings": "Settings",
   "change_language": "Choose language",
   "save_language": "Save language",
-  "selected_language": "Selected language"
+  "selected_language": "Selected language",
+
+  "dateHourStart": "Start date and time",
+  "dateHourEnd": "End date and time",
+  
+  "breast": "Breast",
+  "bottle": "Bottle",
+  "amountMl": "Milliliters",
+  
+  "exchangeType": "Exchange Type",
+  "urine": "Urine",
+  "feces": "Feces",
+
+  "uptade": "Uptade",
+  "save": "Save"
 }
