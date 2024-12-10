@@ -37,15 +37,11 @@ export default function Diaper({ item, setItem }) {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography variant="body1" gutterBottom>
-            {t("diaperCondition")}
-          </Typography>
           <Select
             label={t("diaperCondition")}
             value={item.data.condition || ""}
             onChange={(e) => handleInputChange("condition", e.target.value)}
             options={diaperOptions}
-            helperText={t("selectCondition")}
           />
         </Grid>
 

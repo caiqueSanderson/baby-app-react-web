@@ -24,9 +24,12 @@
   "bottle": "Bottle",
   "amountMl": "Milliliters",
   
-  "exchangeType": "Exchange Type",
-  "urine": "Urine",
-  "feces": "Feces",
+  "changeTime": "Change time",
+  "diaperCondition": "Diaper condition",
+  "urine": "Urine stained",
+  "feces": "Dirty with feces",
+  "both": "Both",
+  "clean": "Clean",
 
   "uptade": "Uptade",
   "save": "Save"

@@ -24,9 +24,12 @@
   "bottle": "Mamadeira",
   "amountMl": "Mililitros",
   
-  "exchangeType": "Tipo de troca",
-  "urine": "Urina",
-  "feces": "Fezes",
+  "changeTime": "Horário da Troca",
+  "diaperCondition": "Condição da Fralda",
+  "urine": "Suja de Urina",
+  "feces": "Suja de Fezes",
+  "both": "Ambos",
+  "clean": "Limpa",
 
   "uptade": "Atualizar",
   "save": "Salvar"

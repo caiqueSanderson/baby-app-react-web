@@ -24,9 +24,12 @@
   "bottle": "Botella",
   "amountMl": "Mililitros",
   
-  "exchangeType": "Tipo de cambio",
-  "urine": "Orina",
-  "feces": "Heces",
+  "changeTime": "Cambiar hora",
+  "diaperCondition": "Estado del pañal",
+  "urine": "Orina manchada",
+  "feces": "Suja con fezes",
+  "both": "Ambos",
+  "clean": "Limpia",
 
   "uptade": "Actualizar",
   "save": "Ahorrar"
