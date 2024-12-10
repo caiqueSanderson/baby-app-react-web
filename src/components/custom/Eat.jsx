@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TextField, DateTimePicker, Switch } from "..";
 import { useTranslation } from "react-i18next";
 
 export default function Eat({ item, setItem }) {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    if (!item.data.feedType) {
+      setItem((prev) => ({
+        ...prev,
+        data: {
+          ...prev.data,
+          feedType: "breast", 
+        },
+      }));
+    }
+  }, [item, setItem]);
+
   const handleSwitchChange = (isBottle) => {
     setItem({
       ...item,
       data: {
         ...item.data,
-        feedType: isBottle ? "bottle" : "breast", 
+        feedType: isBottle ? "bottle" : "breast",
         start_date: null,
         end_date: null,
         ml: "",
@@ -19,9 +31,21 @@ export default function Eat({ item, setItem }) {
     });
   };
 
+  const handleInputChange = (field, value) => {
+    setItem((prev) => ({
+      ...prev,
+      data: {
+        ...prev.data,
+        [field]: value,
+      },
+    }));
+  };
+
   return (
     <div>
-      <div style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}>
+      <div
+        style={{ display: "flex", alignItems: "center", marginBottom: "1rem" }}
+      >
         <span style={{ marginRight: "1rem" }}>{t("breast")}</span>
         <Switch
           checked={item.data.feedType === "bottle"}
@@ -54,12 +78,7 @@ export default function Eat({ item, setItem }) {
             fullWidth={true}
             ampm={false}
             format="DD/MM/YYYY HH:mm"
-            onChange={(value) =>
-              setItem({
-                ...item,
-                data: { ...item.data, start_date: value.toISOString() },
-              })
-            }
+            onChange={(value) => handleInputChange("start_date", value)}
           />
 
           <DateTimePicker
@@ -69,12 +88,7 @@ export default function Eat({ item, setItem }) {
             fullWidth={true}
             ampm={false}
             format="DD/MM/YYYY HH:mm"
-            onChange={(value) =>
-              setItem({
-                ...item,
-                data: { ...item.data, end_date: value.toISOString() },
-              })
-            }
+            onChange={(value) => handleInputChange("end_date", value)}
           />
         </>
       )}

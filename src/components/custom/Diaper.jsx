@@ -1,16 +1,26 @@
 import React from "react";
-import { DateTimePicker, TextField, Switch, Grid, Typography } from "..";
+import { DateTimePicker, TextField, Grid, Typography, Select } from "..";
 import { useTranslation } from "react-i18next";
 
 export default function Diaper({ item, setItem }) {
   const { t } = useTranslation();
 
-  const handleSwitchChange = (field, value) => {
-    setItem({
-      ...item,
-      data: { ...item.data, [field]: value },
-    });
+  const handleInputChange = (field, value) => {
+    setItem((prev) => ({
+      ...prev,
+      data: {
+        ...prev.data,
+        [field]: value,
+      },
+    }));
   };
+
+  const diaperOptions = [
+    { value: "urine", label: t("urine") },
+    { value: "feces", label: t("feces") },
+    { value: "both", label: t("both") },
+    { value: "clean", label: t("clean") },
+  ];
 
   return (
     <div>
@@ -18,51 +28,32 @@ export default function Diaper({ item, setItem }) {
         <Grid item xs={12}>
           <DateTimePicker
             value={item.data.changeTime || null}
-            label={t("dateHourStart")}
+            label={t("changeTime")}
             fullWidth
             ampm={false}
             format="DD/MM/YYYY HH:mm"
-            onChange={(value) =>
-              setItem({
-                ...item,
-                data: { ...item.data, changeTime: value.toISOString() },
-              })
-            }
+            onChange={(value) => handleInputChange("changeTime", value)}
           />
         </Grid>
 
         <Grid item xs={12}>
           <Typography variant="body1" gutterBottom>
-            {t("exchangeType")}
+            {t("diaperCondition")}
           </Typography>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="body2" style={{ marginRight: "0.5rem" }}>
-              {t("urine")}
-            </Typography>
-            <Switch
-              checked={item.data.urine || false}
-              onChange={(e) => handleSwitchChange("urine", e.target.checked)}
-            />
-            <Typography variant="body2" style={{ margin: "0 1rem" }}>
-              {t("feces")}
-            </Typography>
-            <Switch
-              checked={item.data.feces || false}
-              onChange={(e) => handleSwitchChange("feces", e.target.checked)}
-            />
-          </div>
+          <Select
+            label={t("diaperCondition")}
+            value={item.data.condition || ""}
+            onChange={(e) => handleInputChange("condition", e.target.value)}
+            options={diaperOptions}
+            helperText={t("selectCondition")}
+          />
         </Grid>
 
         <Grid item xs={12}>
           <TextField
             label={t("observations")}
             value={item.data.observations || ""}
-            onChange={(e) =>
-              setItem({
-                ...item,
-                data: { ...item.data, observations: e.target.value },
-              })
-            }
+            onChange={(e) => handleInputChange("observations", e.target.value)}
             fullWidth
             multiline
             rows={4}

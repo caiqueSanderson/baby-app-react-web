@@ -15,6 +15,7 @@ export { default as Tab } from './tab';
 export { default as Typography } from './typography';
 export { default as Snackbar } from './snackbar';
 export { default as Alert } from './alert';
+export { default as Select } from './select';
 
 export { default as AppBar } from './custom/appBar';
 export { default as CardNewItem } from './custom/cardNewItem';

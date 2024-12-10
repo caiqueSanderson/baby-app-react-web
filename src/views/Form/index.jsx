@@ -7,7 +7,7 @@ import {
   Container,
   Typography,
   Button,
-  IconButton,
+  Grid,
   AppBar,
   Eat,
   Diaper,
@@ -19,7 +19,7 @@ import "../styles/form.scss";
 export default function Form() {
   const { itemType, id } = useParams();
   const [item, setItem] = useState({ name: "", data: {} });
-  
+
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -72,21 +72,23 @@ export default function Form() {
     <Box className="form-container">
       <AppBar isEditMode={!!id} title={t(itemType)} onDelete={handleDelete} />
 
-      <Container>
-        <Typography variant="h4">
-          {id ? t("editItem") : t("addItem")}
-        </Typography>
+      <Grid className="data-container">
+        <Container>
+          <Typography variant="h4">
+            {id ? t("editItem") : t("addItem")}
+          </Typography>
 
-        {renderFormType()}
+          {renderFormType()}
 
-        <Button
-          className="form-button"
-          variant="contained"
-          onClick={handleSave}
-        >
-          {id ? t("uptade") : t("save")}
-        </Button>
-      </Container>
+          <Button
+            className="form-button"
+            variant="contained"
+            onClick={handleSave}
+          >
+            {id ? t("uptade") : t("save")}
+          </Button>
+        </Container>
+      </Grid>
     </Box>
   );
 }
