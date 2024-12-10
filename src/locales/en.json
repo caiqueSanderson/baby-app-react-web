@@ -31,6 +31,9 @@
   "breast": "Breast",
   "bottle": "Bottle",
   "amountMl": "Milliliters",
+  "optionSide": "Side option",
+  "right": "Right",
+  "left": "Left",
 
   "changeTime": "Change time",
   "diaperCondition": "Diaper condition",

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { TextField, DateTimePicker, Switch } from "..";
+import { TextField, DateTimePicker, Switch, Select } from "..";
 import { useTranslation } from "react-i18next";
-import dayjs from "dayjs"; 
+import dayjs from "dayjs";
 
 export default function Eat({ item, setItem }) {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export default function Eat({ item, setItem }) {
         ...prev,
         data: {
           ...prev.data,
-          feedType: "breast", 
+          feedType: "breast",
         },
       }));
     }
@@ -41,6 +41,12 @@ export default function Eat({ item, setItem }) {
       },
     }));
   };
+
+  const eatOptions = [
+    { value: "right", label: t("right") },
+    { value: "left", label: t("left") },
+    { value: "both", label: t("both") },
+  ];
 
   return (
     <div>
@@ -72,6 +78,12 @@ export default function Eat({ item, setItem }) {
 
       {item.data.feedType === "breast" && (
         <>
+          <Select
+            label={t("optionSide")}
+            value={item.data.side || ""}
+            onChange={(e) => handleInputChange("side", e.target.value)}
+            options={eatOptions}
+          />
           <DateTimePicker
             value={item.data.start_date ? dayjs(item.data.start_date) : null}
             label={t("dateHourStart")}

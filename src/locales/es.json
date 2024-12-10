@@ -1,5 +1,5 @@
 {
-  "dashboard":"Panel",
+  "dashboard": "Panel",
 
   "title": "Agrega información",
   "addItem": "Agregar ítem",
@@ -31,7 +31,10 @@
   "breast": "Mama",
   "bottle": "Botella",
   "amountMl": "Mililitros",
-  
+  "optionSide": "Opción lateral",
+  "right": "Derecha",
+  "left": "Izquierda",
+
   "changeTime": "Cambiar hora",
   "diaperCondition": "Estado del pañal",
   "urine": "Orina manchada",

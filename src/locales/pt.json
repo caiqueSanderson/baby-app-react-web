@@ -31,6 +31,9 @@
   "breast": "Seios",
   "bottle": "Mamadeira",
   "amountMl": "Mililitros",
+  "optionSide": "Opção do lado",
+  "right": "Direito",
+  "left": "Esquerdo",
 
   "changeTime": "Horário da Troca",
   "diaperCondition": "Condição da Fralda",

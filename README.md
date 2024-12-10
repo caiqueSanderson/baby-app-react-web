@@ -1,8 +1,28 @@
-# React + Vite
+# React Authenticated Routing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é um aplicativo web desenvolvido com **React** e **React Router**, que implementa um sistema de rotas públicas e privadas, garantindo o acesso a páginas protegidas apenas para usuários autenticados.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Tecnologias Utilizadas
+
+- **React**: Biblioteca principal para construção da interface.
+- **React Router**: Gerenciamento de rotas públicas e privadas.
+- **Context API**: Para gerenciamento de estado global.
+- **LocalStorage**: Para simulação de autenticação básica.
+- **i18next**: 
+
+---
+
+## 📦 Instalação e Uso
+
+### Pré-requisitos
+
+- **Node.js** e NPM (ou Yarn) instalados.
+
+### Passos para execução
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   cd seu-repositorio
