@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, DateTimePicker } from "..";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs"; 
 
 export default function Sleep({ item, setItem }) {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ export default function Sleep({ item, setItem }) {
     <div>
       <DateTimePicker
         name="start_date"
-        value={item.data.start_date || null}
+        value={item.data.start_date ? dayjs(item.data.start_date) : null}
         label={t("dateHourStart")}
         fullWidth={true}
         ampm={false}
@@ -29,7 +30,7 @@ export default function Sleep({ item, setItem }) {
 
       <DateTimePicker
         name="end_date"
-        value={item.data.end_date || null}
+        value={item.data.end_date ? dayjs(item.data.end_date) : null}
         label={t("dateHourEnd")}
         fullWidth={true}
         ampm={false}

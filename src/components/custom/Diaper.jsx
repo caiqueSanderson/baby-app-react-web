@@ -1,6 +1,7 @@
 import React from "react";
 import { DateTimePicker, TextField, Grid, Typography, Select } from "..";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
 
 export default function Diaper({ item, setItem }) {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ export default function Diaper({ item, setItem }) {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <DateTimePicker
-            value={item.data.changeTime || null}
+            value={item.data.changeTime ? dayjs(item.data.changeTime) : null}
             label={t("changeTime")}
             fullWidth
             ampm={false}

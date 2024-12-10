@@ -73,9 +73,10 @@ const CustomList = ({ items }) => {
             borderRadius: "60px",
             marginTop: "1em",
             width: "100%",
+            cursor: "pointer"
           }}
           id={`new-item-list-${index}`}
-          onClick={() => navigate(`/${item.type}/${item.id}`)}
+          onClick={() => navigate(`/form/${item.type}/${item.id}`)}
         >
           <ListItemAvatar>
             <Avatar sx={{ bgcolor: typeColor[item.type] }}>

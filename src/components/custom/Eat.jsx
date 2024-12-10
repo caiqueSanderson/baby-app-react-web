@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { TextField, DateTimePicker, Switch } from "..";
 import { useTranslation } from "react-i18next";
+import dayjs from "dayjs"; 
 
 export default function Eat({ item, setItem }) {
   const { t } = useTranslation();
@@ -72,7 +73,7 @@ export default function Eat({ item, setItem }) {
       {item.data.feedType === "breast" && (
         <>
           <DateTimePicker
-            value={item.data.start_date || null}
+            value={item.data.start_date ? dayjs(item.data.start_date) : null}
             label={t("dateHourStart")}
             name="start_date"
             fullWidth={true}
@@ -82,7 +83,7 @@ export default function Eat({ item, setItem }) {
           />
 
           <DateTimePicker
-            value={item.data.end_date || null}
+            value={item.data.end_date ? dayjs(item.data.end_date) : null}
             label={t("dateHourEnd")}
             name="end_date"
             fullWidth={true}
