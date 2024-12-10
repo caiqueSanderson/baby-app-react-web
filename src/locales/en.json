@@ -1,4 +1,6 @@
 {
+  "dashboard": "Dashboard",
+
   "title": "Add information",
   "addItem": "Add item",
   "editItem": "Edit item",
@@ -18,24 +20,28 @@
   "selectedLanguage": "Selected language",
   "babyInfo": "Baby Information",
   "babyName": "Baby Name",
-  "babyWeight": "Baby Weight(kg)",
+  "babyWeight": "Baby Weight (kg)",
   "babyLength": "Baby Length (cm)",
   "saveBabyInfo": "Save Information",
   "logout": "Logout",
 
   "dateHourStart": "Start date and time",
   "dateHourEnd": "End date and time",
-  
+
   "breast": "Breast",
   "bottle": "Bottle",
   "amountMl": "Milliliters",
-  
+
   "changeTime": "Change time",
   "diaperCondition": "Diaper condition",
   "urine": "Urine stained",
   "feces": "Dirty with feces",
   "both": "Both",
   "clean": "Clean",
+
+  "babySleeping": "The baby is sleeping",
+  "babyEating": "The baby is eating",
+  "babyChanging": "The baby is changing the diaper",
 
   "uptade": "Uptade",
   "save": "Save"

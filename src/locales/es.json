@@ -1,4 +1,6 @@
 {
+  "dashboard":"Panel",
+
   "title": "Agrega información",
   "addItem": "Agregar ítem",
   "editItem": "Editar elemento",
@@ -36,6 +38,10 @@
   "feces": "Suja con fezes",
   "both": "Ambos",
   "clean": "Limpia",
+
+  "babySleeping": "La bebe esta durmiendo",
+  "babyEating": "La bebe esta comiendo",
+  "babyChanging": "El bebé está cambiando pañal",
 
   "uptade": "Actualizar",
   "save": "Ahorrar"

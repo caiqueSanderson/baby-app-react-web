@@ -1,4 +1,6 @@
 {
+  "dashboard": "Painel",
+
   "title": "Adicione informações",
   "addItem": "Adicionar item",
   "editItem": "Editar item",
@@ -29,13 +31,17 @@
   "breast": "Seios",
   "bottle": "Mamadeira",
   "amountMl": "Mililitros",
-  
+
   "changeTime": "Horário da Troca",
   "diaperCondition": "Condição da Fralda",
   "urine": "Suja de Urina",
   "feces": "Suja de Fezes",
   "both": "Ambos",
   "clean": "Limpa",
+
+  "babySleeping": "O bebê está dormindo",
+  "babyEating": "O bebê está comendo",
+  "babyChanging": "O bebê está trocando a fralda",
 
   "uptade": "Atualizar",
   "save": "Salvar"

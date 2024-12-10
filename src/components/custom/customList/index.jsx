@@ -36,13 +36,13 @@ const CustomList = ({ items }) => {
   };
 
   function subtitleSleep() {
-    return "O bebê está dormindo";
+    return t("babySleeping");
   }
   function subtitleEat() {
-    return "O bebê está comendo";
+    return t("babyEating");
   }
   function subtitleDiaper() {
-    return "O bebê está trocando a fralda";
+    return t("babyChanging");
   }
 
   function generateSubtitle(actionType) {

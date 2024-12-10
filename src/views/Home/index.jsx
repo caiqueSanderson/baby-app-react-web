@@ -59,7 +59,7 @@ export default function Home() {
         </Box>
 
         <Box className="header-info left">
-          <IconButton>
+          <IconButton onClick={() => navigate("/dashboard")}>
             <BarChart />
           </IconButton>
           <Typography variant="body2">
