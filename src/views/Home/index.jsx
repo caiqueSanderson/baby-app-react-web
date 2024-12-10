@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../../Context";
 
 import {
   Box,
@@ -17,6 +18,7 @@ import { getStoredDataLocalStorage } from "../../services/dataLocalStorage";
 import "../styles/homeScreen.scss";
 
 export default function Home() {
+  const { babyInfo } = useAppContext();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -43,19 +45,26 @@ export default function Home() {
             },
           }}
         />
+        <Typography variant="body2" className="baby-name">
+          {babyInfo.name ? babyInfo.name : null}
+        </Typography>
 
         <Box className="header-info right">
           <IconButton onClick={() => navigate("/settings")}>
             <Settings />
           </IconButton>
-          <Typography variant="body2">{t("weight")}: 3,5 kg</Typography>
+          <Typography variant="body2">
+            {babyInfo.weight ? `${t("weight")}: ${babyInfo.weight} kg` : null}
+          </Typography>
         </Box>
 
         <Box className="header-info left">
           <IconButton>
             <BarChart />
           </IconButton>
-          <Typography variant="body2">{t("height")}: 50 cm</Typography>
+          <Typography variant="body2">
+            {babyInfo.height ? `${t("height")}: ${babyInfo.height} cm` : null}
+          </Typography>
         </Box>
       </Container>
 

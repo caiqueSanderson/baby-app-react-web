@@ -13,9 +13,15 @@
   "height": "Altura",
 
   "settings": "Configurações",
-  "change_language": "Escolha o idioma",
-  "save_language": "Salvar idioma",
-  "selected_language": "Idioma selecionado",
+  "changeLanguage": "Selecionar Idioma",
+  "saveLanguage": "Salvar Idioma",
+  "selectedLanguage": "Idioma Selecionado",
+  "babyInfo": "Informações do Bebê",
+  "babyName": "Nome do Bebê",
+  "babyWeight": "Peso do Bebê (kg)",
+  "babyLength": "Comprimento do Bebê (cm)",
+  "saveBabyInfo": "Salvar Informações",
+  "logout": "Sair",
 
   "dateHourStart": "Data e hora de ínicio",
   "dateHourEnd": "Data e hora do término",

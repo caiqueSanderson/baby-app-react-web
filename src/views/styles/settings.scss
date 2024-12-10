@@ -61,5 +61,38 @@
         background-color: #9c4dcc; 
       }
     }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+
+      label {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+      }
+
+      input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:focus {
+          outline: none;
+          border-color: #6a1b9a;
+          box-shadow: 0 0 0 2px rgba(106, 27, 154, 0.2);
+        }
+      }
+    }
+
+    .logout-button {
+      margin-top: 1rem;
+      background-color: #d32f2f; 
+      color: white; 
+      &:hover {
+        background-color: #f44336; 
+      }
+    }
   }
 }

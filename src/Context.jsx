@@ -5,6 +5,11 @@ export const AppContext = createContext();
 
 export function AppProvider({ children }) {
   const [language, setLanguage] = useState(i18n.language);
+  const [babyInfo, setBabyInfo] = useState({
+    name: "",
+    weight: "",
+    height: "",
+  });
 
   const changeLanguage = (lang) => {
     setLanguage(lang);
@@ -49,16 +54,32 @@ export function AppProvider({ children }) {
     setAuthState((prev) => ({ ...prev, successMessage: "" }));
   }
 
+  function logout() {
+    setAuthState({
+      email: "",
+      password: "",
+      isAuthenticated: false,
+      successMessage: "",
+    });
+    localStorage.removeItem("@email");
+    localStorage.removeItem("@password");
+  }
+
   const globalState = {
     language,
     changeLanguage,
     authState,
     login,
     register,
+    logout,
+    babyInfo,
+    setBabyInfo,
     clearSuccessMessage,
   };
 
-  return <AppContext.Provider value={globalState}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider value={globalState}>{children}</AppContext.Provider>
+  );
 }
 
 export const useAppContext = () => {
