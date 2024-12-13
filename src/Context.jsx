@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
+import { supabase } from "./services/database/supabaseClient"
 import i18n from "./i18n";
 
 export const AppContext = createContext();
@@ -75,6 +76,7 @@ export function AppProvider({ children }) {
     babyInfo,
     setBabyInfo,
     clearSuccessMessage,
+    supabase
   };
 
   return (
