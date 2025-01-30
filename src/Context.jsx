@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
-import { supabase } from "./services/database/supabaseClient"
+import { supabase } from "./services/database/supabaseClient";
 import i18n from "./i18n";
 
 export const AppContext = createContext();
@@ -24,31 +24,43 @@ export function AppProvider({ children }) {
     successMessage: "",
   });
 
-  function login(email, password) {
-    const storedEmail = localStorage.getItem("@email");
-    const storedPassword = localStorage.getItem("@password");
+  async function login(email, password) {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (email === storedEmail && password === storedPassword) {
+      if (error) throw error;
+
       setAuthState({
         ...authState,
         email,
         isAuthenticated: true,
         successMessage: "Login bem-sucedido!",
       });
-      return true;
-    } else {
-      return false;
+    } catch (error) {
+      setAuthState({
+        ...authState,
+        errorMessage: "E-mail ou senha inválidos.",
+      });
     }
   }
 
-  function register(email, password) {
-    localStorage.setItem("@email", email);
-    localStorage.setItem("@password", password);
+  async function register(email, password) {
+    try {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        throw error;
+      }
 
-    setAuthState({
-      ...authState,
-      successMessage: "Cadastro realizado com sucesso!",
-    });
+      setAuthState({
+        ...authState,
+        successMessage: "Cadastro realizado com sucesso!",
+      });
+    } catch (error) {
+      setAuthState({ ...authState, errorMessage: error.message });
+    }
   }
 
   function clearSuccessMessage() {
@@ -76,7 +88,7 @@ export function AppProvider({ children }) {
     babyInfo,
     setBabyInfo,
     clearSuccessMessage,
-    supabase
+    supabase,
   };
 
   return (

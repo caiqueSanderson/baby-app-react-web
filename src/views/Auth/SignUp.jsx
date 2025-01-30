@@ -6,7 +6,6 @@ import "../styles/auth.scss";
 
 export default function SignUp() {
   const { register, authState, clearSuccessMessage } = useAppContext();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -47,16 +46,6 @@ export default function SignUp() {
         </Typography>
 
         <Box component="form" className="auth-form">
-          <TextField
-            fullWidth
-            label="Nome completo"
-            type="text"
-            variant="outlined"
-            margin="normal"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
           <TextField
             fullWidth
             label="E-mail"
