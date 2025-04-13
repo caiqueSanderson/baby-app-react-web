@@ -1,28 +1,61 @@
-# React Authenticated Routing App
+# 👶 Baby Manager
 
-Este projeto é um aplicativo web desenvolvido com **React** e **React Router**, que implementa um sistema de rotas públicas e privadas, garantindo o acesso a páginas protegidas apenas para usuários autenticados.
+Um sistema simples e funcional para acompanhar a rotina de um bebê — incluindo **sono**, **amamentação** e **troca de fraldas**. Desenvolvido em **React**, o projeto conta com autenticação básica, rotas protegidas e suporte à internacionalização. Ideal para uso pessoal ou como base para projetos mais robustos!
 
----
-
-## ✨ Tecnologias Utilizadas
-
-- **React**: Biblioteca principal para construção da interface.
-- **React Router**: Gerenciamento de rotas públicas e privadas.
-- **Context API**: Para gerenciamento de estado global.
-- **LocalStorage**: Para simulação de autenticação básica.
-- **i18next**: 
+> 🚧 Projeto em desenvolvimento — novas features em breve! Acompanhe por aqui. 😉
 
 ---
 
-## 📦 Instalação e Uso
+## 🚀 Funcionalidades
+
+- ✅ Interface amigável para registrar atividades do bebê  
+- 🔐 Rotas públicas e privadas com autenticação simples  
+- 🌍 Suporte multilíngue com `i18next`  
+- 💾 Dados armazenados via `localStorage` (sem backend ainda)  
+- 🎨 UI moderna e minimalista com ícones e cores intuitivas
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **React** — Biblioteca principal para construção da interface  
+- **React Router** — Gerenciamento de navegação e rotas privadas  
+- **Context API** — Estado global leve e eficiente  
+- **LocalStorage** — Persistência temporária de dados (mock de login)  
+- **i18next** — Internacionalização com suporte fácil a múltiplos idiomas  
+
+---
+
+## 📦 Como rodar o projeto
 
 ### Pré-requisitos
 
-- **Node.js** e NPM (ou Yarn) instalados.
+- Node.js (v14 ou superior)
+- NPM ou Yarn;
 
-### Passos para execução
+### Passo a passo
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
-   cd seu-repositorio
+#### Clone o repositório
+
+```bash
+git clone https://github.com/caiqueSanderson/baby-app-react-web.git
+cd seu-repositorio
+```
+
+#### Instale as dependências
+```bash
+npm install
+```
+
+#### Inicie o servidor local
+```bash
+npm run dev
+```
+
+## 🤝 Contribuição
+
+Contribuições são super bem-vindas!
+Se tiver ideias, sugestões ou quiser codar junto, abre uma issue ou manda um PR! 🙌
+
+## 📄 Licença
+Este projeto está licenciado sob a MIT License.
