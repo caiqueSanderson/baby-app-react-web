@@ -84,10 +84,11 @@
         margin-bottom: 0.5rem;
       }
 
-      typography {
+      .MuiTypography-root {
         word-wrap: break-word;
         overflow-wrap: break-word;
         text-align: center;
+        font-size: 1.2rem;
       }
     }
   }
@@ -97,8 +98,8 @@
       .card {
         padding: 0.5rem;
 
-        typography {
-          font-size: 0.9rem;
+        .MuiTypography-root {
+          font-size: 0.7rem;
         }
       }
     }

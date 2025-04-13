@@ -19,7 +19,7 @@ export default function AppBar({ isEditMode, title, onDelete }) {
       {isEditMode && (
         <IconButton className="delete-button" onClick={onDelete}>
           <Delete />
-        </IconButton>
+        </IconButton> 
       )}
     </Box>
   );

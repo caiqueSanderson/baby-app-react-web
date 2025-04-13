@@ -6,9 +6,9 @@ import "../styles/dashboardScreen.scss";
 export default function Dashboard() {
   const { t } = useTranslation();
 
-  const sleepData = 5;
-  const eatData = 3;
-  const diaperData = 2;
+  let sleepData = 0;
+  let eatData = 0;
+  let diaperData = 0;
 
   return (
     <Box className="dashboard-container">
