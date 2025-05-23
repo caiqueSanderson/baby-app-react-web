@@ -13,6 +13,7 @@ import {
   CustomList,
 } from "../../components";
 import { Settings, BarChart, AddCircle, WidthFull } from "@mui/icons-material";
+import { Tooltip } from "@mui/material";
 
 import { getStoredDataLocalStorage } from "../../services/dataLocalStorage";
 import "../styles/homeScreen.scss";
@@ -50,18 +51,24 @@ export default function Home() {
         </Typography>
 
         <Box className="header-info right">
-          <IconButton onClick={() => navigate("/settings")}>
-            <Settings />
-          </IconButton>
+          <Tooltip title={`${t("settings")}`}>
+            <IconButton onClick={() => navigate("/settings")}>
+              <Settings />
+            </IconButton>
+          </Tooltip>
+
           <Typography variant="body2">
             {babyInfo.weight ? `${t("weight")}: ${babyInfo.weight} kg` : null}
           </Typography>
         </Box>
 
         <Box className="header-info left">
-          <IconButton onClick={() => navigate("/dashboard")}>
-            <BarChart />
-          </IconButton>
+          <Tooltip title={`${t("dashboard")}`}>
+            <IconButton onClick={() => navigate("/dashboard")}>
+              <BarChart />
+            </IconButton>
+          </Tooltip>
+
           <Typography variant="body2">
             {babyInfo.height ? `${t("height")}: ${babyInfo.height} cm` : null}
           </Typography>
