@@ -39,7 +39,7 @@ Um sistema simples e funcional para acompanhar a rotina de um bebê — incluind
 
 ```bash
 git clone https://github.com/caiqueSanderson/baby-app-react-web.git
-cd seu-repositorio
+cd baby-app-react-web
 ```
 
 #### Instale as dependências
